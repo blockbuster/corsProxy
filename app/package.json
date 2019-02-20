@@ -7,7 +7,6 @@
   "author": "SAM CLI",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.4",
     "proxy": "^0.2.4",
     "request": "^2.88.0"
   },

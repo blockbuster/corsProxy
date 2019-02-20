@@ -1,11 +1,7 @@
-var express = require('express');
-var request = require('request');
-var process = require('process');
-
+const request = require('request')
 var proxy_port = 8080;
 var service_url = 'https://storefront.commerce.theplatform.eu';
-var app = express();
-
+/*
 app.use('/', function(req, res) {
 
     var url = service_url + req.url;
@@ -40,3 +36,31 @@ process.on('uncaughtException', function(err) {
 
 app.listen(proxy_port);
 console.info('Listening on', proxy_port);
+*/
+
+const fetchResponse = async (url) => {
+  await request(url, (err, res, body) =>{
+    console.log(err)
+    console.log(res)
+    console.log(body)
+    return
+  })
+  
+
+}
+
+
+exports.handler = async (event, context) => {
+  const origin = event.headers.Origin;
+  let header = {};
+  const method = event.requestContext.httpMethod;
+  await fetchResponse(service_url)
+  header['Access-Control-Allow-Origin'] = origin;
+  header['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE';
+  header['Access-Control-Allow-Headers'] = 'accept, authorization, content-type, origin';
+  return {
+    statusCode: 200,
+    headers: header,
+    body: JSON.stringify({'name': 'Bob'})
+  }
+}
