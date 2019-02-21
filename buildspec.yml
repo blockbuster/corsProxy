@@ -5,7 +5,7 @@ env:
 phases:
   install:
     commands:
-      - cd app && npm install && cd
+      - cd app && npm install && cd ../
   pre_build: 
     commands:
       - ls -al
