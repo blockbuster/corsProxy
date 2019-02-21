@@ -1,30 +1,42 @@
-const request = require('request')
+const axios = require("axios");
 var proxy_port = 8080;
 var service_url = 'https://storefront.commerce.theplatform.eu';
+// var service_url = 'https://data.entertainment.tv.theplatform.eu'
 
 const requestMethods  = {
-  'GET': request.get,
-  'POST': request.post,
-  'PUT': request.put,
-  'OPTIONS': request.options,
-  'DELETE': request.delete
+  'GET': axios.get,
+  'POST': axios.post,
+  'PUT': axios.put,
+  'OPTIONS': axios.options,
+  'DELETE': axios.delete
 
 }
 
 
-const fetchResponse = async (url, req, origin, method) => {
-  const res = await req(url, (res) =>{
-
-  res.headers['Access-Control-Allow-Origin'] = origin;
-  res.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE';
-  res.headers['Access-Control-Allow-Headers'] = 'accept, authorization, content-type, origin';
-  if (method === 'OPTIONS')
-    res.statusCode = 200
+const fetchResponse = async (url, origin, method, data) => {
+  allow_methods = ['GET','PUT','POST','DELETE'];
+  allow_headers = ['accept', 'authorization', 'content-type','origin']
+  const requestBody = {
+    url: url, method: method }
+  if (data) {
+    requestBody["data"] = JSON.stringify(data)
+  }
+  const res = await axios(requestBody)
+  .then((res) => {    
+     res.headers['access-control-allow-origin'] = origin;
+     res.headers['Access-Control-Allow-Methods'] = allow_methods.join(',') 
+     res.headers['Access-Control-Allow-Headers'] = allow_headers.join(',')
+     delete res.headers["content-length"]
+     if (method === 'OPTIONS'){
+        res.statusCode = 200
+      }
+      return res
   })
-  console.log(res)
+    .catch((err)=> {
+      // return err.response 
+    })
   return res
   
-
 }
 
 const seriealize = async (params) => {
@@ -40,18 +52,25 @@ exports.handler = async (event, context) => {
   let header = {};
   const method = event.requestContext.httpMethod;
   const path = event.path;
+  if (path === '/favicon.ico') {return {}}
   const params = event.queryStringParameters
-
+  const data = event.body
   let queryString = await seriealize(params); 
 
+
   const url = `${service_url}${path}/?${queryString}`
-  console.log(url)
   const res = await fetchResponse(
     url, 
-    requestMethods[method], 
     origin, 
-    method
+    method, 
+    data
   )
-  // console.log(event)
-  return res
+
+
+  return {
+      headers: res.headers, 
+      statusCode: res.statusCode, 
+      body: JSON.stringify(res.data)
+  }
+  // return payload
 }
