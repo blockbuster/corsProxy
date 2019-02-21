@@ -6,6 +6,9 @@ phases:
   install:
     commands:
       - cd app && npm install
+  pre_build: 
+    commands:
+      - cd ../
   build:
     commands:
       - aws cloudformation package --template template.yaml --s3-bucket $S3_BUCKET --output-template corsProxy-template.yaml 
