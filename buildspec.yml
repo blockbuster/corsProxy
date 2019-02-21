@@ -5,10 +5,10 @@ env:
 phases:
   install:
     commands:
-      - cd app && npm install
+      - npm install app
   pre_build: 
     commands:
-      - cd ../
+      - ls -al
   build:
     commands:
       - aws cloudformation package --template template.yaml --s3-bucket $S3_BUCKET --output-template corsProxy-template.yaml 
