@@ -3,15 +3,6 @@ var proxy_port = 8080;
 var service_url = 'https://storefront.commerce.theplatform.eu';
 // var service_url = 'https://data.entertainment.tv.theplatform.eu'
 
-const requestMethods  = {
-  'GET': axios.get,
-  'POST': axios.post,
-  'PUT': axios.put,
-  'OPTIONS': axios.options,
-  'DELETE': axios.delete
-
-}
-
 
 const fetchResponse = async (url, origin, method, data) => {
   allow_methods = ['GET','PUT','POST','DELETE'];
