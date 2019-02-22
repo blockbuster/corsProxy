@@ -13,7 +13,7 @@ Globals:
         Cors:
           AllowMethods: "'*'"
           AllowHeaders: "'*'"
-          # AllowOrigin: "'*'"
+          AllowOrigin: "'*'"
 
 
 Resources:
