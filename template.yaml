@@ -25,7 +25,8 @@ Resources:
                     Properties:
                         Path: /{proxy+}
                         Method: ANY
-                        # Cors: true 
+                        Cors:
+                          AllowOrigin: '*'
 
 Outputs:
 
