@@ -14,7 +14,8 @@ const fetchResponse = async (url, origin, method, data) => {
   }
   const res = await axios(requestBody)
   .then((res) => {    
-     res.headers['access-control-allow-origin'] = origin;
+     // res.headers['access-control-allow-origin'] = origin;
+     res.headers['Access-Control-Allow-Origin'] = origin;
      res.headers['Access-Control-Allow-Methods'] = allow_methods.join(',') 
      res.headers['Access-Control-Allow-Headers'] = allow_headers.join(',')
      delete res.headers["content-length"]
