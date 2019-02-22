@@ -12,11 +12,13 @@ const fetchResponse = async (url, origin, method, data) => {
   if (data) {
     requestBody["data"] = JSON.stringify(data)
   }
+  console.log(origin)
   const res = await axios(requestBody)
   .then((res) => {    
      // res.headers['access-control-allow-origin'] = origin;
      res.headers['Access-Control-Allow-Origin'] = origin;
      console.log('setting origin to: ', origin)
+     
      res.headers['Access-Control-Allow-Methods'] = allow_methods.join(',') 
      res.headers['Access-Control-Allow-Headers'] = allow_headers.join(',')
      delete res.headers["content-length"]
@@ -42,6 +44,7 @@ const seriealize = async (params) => {
 }
 exports.handler = async (event, context) => {
   const origin = event.headers.Origin;
+  console.log(event.headers)
   let header = {};
   const method = event.requestContext.httpMethod;
   const path = event.path;
