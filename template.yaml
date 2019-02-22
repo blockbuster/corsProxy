@@ -9,6 +9,11 @@ Description: >
 Globals:
     Function:
         Timeout: 3
+    Api:
+        Cors:
+          AllowMethods: "'*'"
+          AllowHeaders: "'*'"
+          AllowOrigin: "'*'"
 
 
 Resources:
@@ -25,8 +30,6 @@ Resources:
                     Properties:
                         Path: /{proxy+}
                         Method: ANY
-                        Cors:
-                          AllowOrigin: '*'
 
 Outputs:
 
