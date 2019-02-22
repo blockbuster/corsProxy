@@ -5,8 +5,8 @@ var service_url = 'https://storefront.commerce.theplatform.eu';
 
 
 const fetchResponse = async (url, origin, method, data) => {
-  allow_methods = ['GET','PUT','POST','DELETE'];
-  allow_headers = ['accept', 'authorization', 'content-type','origin']
+  const allow_methods = ['GET','PUT','POST','DELETE'];
+  const allow_headers = ['accept', 'authorization', 'content-type','origin']
   const requestBody = {
     url: url, method: method }
   if (data) {
@@ -24,7 +24,7 @@ const fetchResponse = async (url, origin, method, data) => {
       return res
   })
     .catch((err)=> {
-      // return err.response 
+      return err.response 
     })
   return res
   
