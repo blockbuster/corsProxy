@@ -7,11 +7,12 @@ var service_url = 'https://storefront.commerce.theplatform.eu';
 const fetchResponse = async (url, origin, method, data) => {
   const allow_methods = ['GET','PUT','POST','DELETE'];
   const allow_headers = ['accept', 'authorization', 'content-type','origin']
-  const requestBody = {
-    url: url, method: method }
+  const requestBody = {url: url, method: method }
+
   if (data) {
     requestBody["data"] = JSON.stringify(data)
   }
+  console.log(requestBody)
   console.log(origin)
   const res = await axios(requestBody)
   .then((res) => {    
@@ -44,7 +45,6 @@ const seriealize = async (params) => {
 }
 exports.handler = async (event, context) => {
   const origin = event.headers.origin || event.headers.Origin;
-  console.log(event)
   let header = {};
   const method = event.requestContext.httpMethod;
   const path = event.path;
@@ -62,7 +62,7 @@ exports.handler = async (event, context) => {
     data
   )
 
-
+  console.log(JSON.stringify(res.data))
   return {
       headers: res.headers, 
       statusCode: res.statusCode, 
