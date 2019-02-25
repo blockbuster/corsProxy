@@ -43,8 +43,7 @@ const seriealize = async (params) => {
 
 }
 exports.handler = async (event, context) => {
-  const origin = event.headers.origin;
-  console.log(event.headers)
+  const origin = event.headers.origin || event.headers.Origin;
   let header = {};
   const method = event.requestContext.httpMethod;
   const path = event.path;
