@@ -10,7 +10,7 @@ const fetchResponse = async (url, origin, method, data) => {
   const requestBody = {url: url, method: method }
 
   if (data) {
-    requestBody["data"] = data
+    requestBody["data"] = JSON.parse(data)
   }
   console.log(requestBody)
   console.log(origin)
