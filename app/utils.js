@@ -83,6 +83,7 @@ const sendServiceRequest = async (event) => {
     method,
     eventData.data
   )
+  return res
 }
 
 module.exports = {
