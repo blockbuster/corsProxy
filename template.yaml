@@ -32,7 +32,7 @@ Resources:
                         Method: ANY
             AutoPublishAlias: live
             DeploymentPreference:
-                Type: Linear10PercentEvery1Minutes
+                Type: Linear10PercentEvery1Minute
 
 Outputs:
 
