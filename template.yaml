@@ -30,6 +30,9 @@ Resources:
                     Properties:
                         Path: /{proxy+}
                         Method: ANY
+            AutoPublishAlias: live
+            DeploymentPreference:
+                Type: Linear10PercentEvery10Minutes
 
 Outputs:
 
