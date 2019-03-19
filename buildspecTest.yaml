@@ -1,0 +1,19 @@
+version: 0.2         
+env:
+  variables:
+     S3_BUCKET: sam-package-availability
+phases:
+  install:
+    commands:
+      - cd app && npm install && cd ../
+  build: 
+    commands:
+      - ls -al
+      - cd app
+      - npm run test
+      - cd ..
+
+artifacts:
+    type: zip 
+    files:
+      - '**/*'
