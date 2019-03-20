@@ -82,6 +82,8 @@ test('With params', async () => {
   expect(serializedParams).toBe('param1=1&param2=2&param3=3')
 });
 
+// Test endpoint documentation
+// https://github.com/typicode/jsonplaceholder
 // Endpoint test, GET
 test('GET, service url in params', async () => {
   let event = JSON.parse(fs.readFileSync('./tests/unit/fixtures/get.json', 'utf8'));
@@ -92,12 +94,11 @@ test('GET, service url in params', async () => {
   expect(Object.keys(res.data).length).toBe(100);
 });
 
-// ENDPOINT DOES NOT ALLOW CROSS ORIGIN POST
 // Endpoint test, POST
 test('GET, service url in params', async () => {
   let event = JSON.parse(fs.readFileSync('./tests/unit/fixtures/post.json', 'utf8'));
-  // Add service URL to params
   event.path = '/posts'
+  // Add required data and serviceURL to body
   event.body = JSON.stringify({
     title: 'foo',
     body: 'bar',
