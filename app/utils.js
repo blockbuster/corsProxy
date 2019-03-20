@@ -5,7 +5,6 @@ const fetchResponse = async (url, origin, method, data) => {
   const allow_methods = ['GET','PUT','POST','DELETE'];
   const allow_headers = ['accept', 'authorization', 'content-type','origin']
   const requestBody = {url: url, method: method }
-
   if (data) {
     requestBody["data"] = data 
   }
