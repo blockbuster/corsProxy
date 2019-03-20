@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+// The above lines enables cross domain post
 const utils = require('../../utils.js');
 const fs = require('fs');
 
@@ -77,3 +81,31 @@ test('With params', async () => {
   let serializedParams = await utils.serializeParams(params);
   expect(serializedParams).toBe('param1=1&param2=2&param3=3')
 });
+
+// Endpoint test, GET
+test('GET, service url in params', async () => {
+  let event = JSON.parse(fs.readFileSync('./tests/unit/fixtures/get.json', 'utf8'));
+  // Add service URL to params
+  event.path = '/posts'
+  event.queryStringParameters['serviceURL'] = 'https://jsonplaceholder.typicode.com';
+  let res = await utils.sendServiceRequest(event);
+  expect(Object.keys(res.data).length).toBe(100);
+});
+
+// ENDPOINT DOES NOT ALLOW CROSS ORIGIN POST
+// Endpoint test, POST
+test('GET, service url in params', async () => {
+  let event = JSON.parse(fs.readFileSync('./tests/unit/fixtures/post.json', 'utf8'));
+  // Add service URL to params
+  event.path = '/posts'
+  event.body = JSON.stringify({
+    title: 'foo',
+    body: 'bar',
+    userid: 1,
+    serviceURL: 'https://jsonplaceholder.typicode.com'
+  });
+  let res = await utils.sendServiceRequest(event);
+  expect(typeof res.data.id).toBe('number');
+});
+
+

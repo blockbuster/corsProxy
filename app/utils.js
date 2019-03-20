@@ -50,7 +50,6 @@ const transformEventData = (params, data) => {
     parsedData = JSON.parse(data || '{}')
   }
   catch (e){
-    console.log('Body can not be parsed')
   }
   let serviceURL = 'https://storefront.commerce.theplatform.eu'
   if (params && params.serviceURL) {
