@@ -19,6 +19,7 @@ const fetchResponse = async (url, origin, method, data) => {
      res.headers['Access-Control-Allow-Methods'] = allow_methods.join(',')
      res.headers['Access-Control-Allow-Headers'] = allow_headers.join(',')
      delete res.headers["content-length"]
+     res.headers['transfer-encoding'] =  ''
      if (method === 'OPTIONS'){
         res.statusCode = 200
       }
