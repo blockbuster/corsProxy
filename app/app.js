@@ -1,7 +1,7 @@
 const utils = require('./utils.js')
 
 exports.handler = async (event, context) => {
-  res = utils.sendServiceRequest(event)
+  const res = await utils.sendServiceRequest(event)
   console.log(JSON.stringify(res.data))
   return {
       headers: res.headers,
