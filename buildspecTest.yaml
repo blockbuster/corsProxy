@@ -6,9 +6,13 @@ phases:
   install:
     commands:
       - cd app && npm install && cd ../
+  pre_build:
+    commands:
+      - cd app
+      - node_modules/.bin/eslint .
+      - cd ..
   build: 
     commands:
-      - ls -al
       - cd app
       - npm run test
       - cd ..
