@@ -10,7 +10,7 @@ phases:
     commands:
       - cd app
       - node_modules/.bin/eslint .
-      - cd ...
+      - cd ..
   build: 
     commands:
       - cd app
