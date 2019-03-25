@@ -22,12 +22,12 @@ describe('Testing requests using GET method', () => {
     let params = event.queryStringParameters;
     // Add service URL to params
     params['serviceURL'] = serviceURL;
-    eventData = utils.transformEventData(params, event.body);
+    let eventData = utils.transformEventData(params, event.body);
     expect(eventData.serviceURL).toBe(serviceURL);
   });
   // correct path without service url in params
   test('GET, service URL not in params', () => {
-    eventData = utils.transformEventData(event.params, event.body);
+    let eventData = utils.transformEventData(event.params, event.body);
     expect(eventData.serviceURL).toBe(defaultServiceURL);
   });
   test('GET, service url in params and in body, param has precedence', () => {
@@ -35,7 +35,7 @@ describe('Testing requests using GET method', () => {
     // Add service URL to params
     params['serviceURL'] = serviceURL;
     let body = `{"serviceURL": ${serviceURL2}}`;
-    eventData = utils.transformEventData(params, body);
+    let eventData = utils.transformEventData(params, body);
     expect(eventData.serviceURL).toBe(serviceURL);
   });
 });
@@ -68,7 +68,7 @@ describe('Testing requests using POST method', () => {
 test('No params', async () => {
   expect.assertions(1);
   let serializedParams = await utils.serializeParams({});
-  expect(serializedParams).toBe('')
+  expect(serializedParams).toBe('');
 });
 // Test param serializer
 test('With params', async () => {
@@ -79,7 +79,7 @@ test('With params', async () => {
     param3: 3
   };
   let serializedParams = await utils.serializeParams(params);
-  expect(serializedParams).toBe('param1=1&param2=2&param3=3')
+  expect(serializedParams).toBe('param1=1&param2=2&param3=3');
 });
 
 // Test endpoint documentation
@@ -88,7 +88,7 @@ test('With params', async () => {
 test('GET, service url in params', async () => {
   let event = JSON.parse(fs.readFileSync('./tests/unit/fixtures/get.json', 'utf8'));
   // Add service URL to params
-  event.path = '/posts'
+  event.path = '/posts';
   event.queryStringParameters['serviceURL'] = 'https://jsonplaceholder.typicode.com';
   let res = await utils.sendServiceRequest(event);
   expect(Object.keys(res.data).length).toBe(100);
@@ -97,7 +97,7 @@ test('GET, service url in params', async () => {
 // Endpoint test, POST
 test('GET, service url in params', async () => {
   let event = JSON.parse(fs.readFileSync('./tests/unit/fixtures/post.json', 'utf8'));
-  event.path = '/posts'
+  event.path = '/posts';
   // Add required data and serviceURL to body
   event.body = JSON.stringify({
     title: 'foo',
