@@ -9,28 +9,19 @@ const fetchResponse = async (url, origin, method, data) => {
     requestBody["data"] = data 
   }
   console.log(requestBody)
-  console.log(origin)
   const res = await axios(requestBody)
-  .then((res) => {
      // res.headers['access-control-allow-origin'] = origin;
-     res.headers['access-control-allow-origin'] = origin;
-     console.log('setting origin to: ', origin)
+  res.headers['access-control-allow-origin'] = origin;
 
-     res.headers['Access-Control-Allow-Methods'] = allow_methods.join(',')
-     res.headers['Access-Control-Allow-Headers'] = allow_headers.join(',')
-     res.headers['Accept'] = 'x-amazon-apigateway-binary-media-types'
-     delete res.headers["content-length"]
-     res.headers['transfer-encoding'] =  ''
-     if (method === 'OPTIONS'){
-        res.statusCode = 200
-      }
-      return res
-  })
-    .catch((err)=> {
-      return err.response
-    })
+  res.headers['Access-Control-Allow-Methods'] = allow_methods.join(',')
+  res.headers['Access-Control-Allow-Headers'] = allow_headers.join(',')
+  res.headers['Accept'] = 'x-amazon-apigateway-binary-media-types'
+  delete res.headers["content-length"]
+  res.headers['transfer-encoding'] =  ''
+  if (method === 'OPTIONS'){
+    res.statusCode = 200
+  }
   return res
-
 }
 
 const serializeParams = async (params) => {
