@@ -92,7 +92,7 @@ test('GET, service url in params', async () => {
   event.queryStringParameters['serviceURL'] = 'https://jsonplaceholder.typicode.com';
   let res = await utils.sendServiceRequest(event);
   expect(Object.keys(res.data).length).toBe(100);
-});
+})
 
 // Endpoint test, POST
 test('GET, service url in params', async () => {
