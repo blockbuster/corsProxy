@@ -9,7 +9,7 @@ phases:
   pre_build:
     commands:
       - cd app
-      - eslint .
+      - node_modules/.bin/eslint .
       - cd ...
   build: 
     commands:
