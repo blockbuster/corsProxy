@@ -69,7 +69,7 @@ const sendServiceRequest = async (event) => {
   let params = event.queryStringParameters;
   const eventData = transformEventData(params, event.body);
   const queryString = await serializeParams(eventData.params);
-  const url = `${eventData.serviceURL}${path}/?${queryString}`;
+  const url = `${eventData.serviceURL}${path}?${queryString}`;
   const res = await fetchResponse(
     url,
     origin,
