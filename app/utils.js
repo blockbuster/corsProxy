@@ -52,7 +52,7 @@ const transformEventData = (params, data) => {
   }
   else if (parsedData && parsedData.serviceURL) {
     serviceURL = parsedData.serviceURL;
-    delete parsedData[serviceURL];
+    delete parsedData['serviceURL'];
   }
   return {
     data: parsedData,
