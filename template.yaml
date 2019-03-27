@@ -34,9 +34,9 @@ Resources:
                           AllowMethods: "'*'"
                           AllowHeaders: "'*'"
                           AllowOrigin: "'*'"
-            AutoPublishAlias: live
-            DeploymentPreference:
-                Type: Linear10PercentEvery1Minute
+                          #AutoPublishAlias: live
+                          #DeploymentPreference:
+                          #Type: Linear10PercentEvery1Minute
 
 Outputs:
 
