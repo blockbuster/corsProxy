@@ -30,10 +30,10 @@ Resources:
                     Properties:
                         Path: /{proxy+}
                         Method: ANY
-                      Cors:
-                        AllowMethods: "'*'"
-                        AllowHeaders: "'*'"
-                        AllowOrigin: "'*'"
+                    Cors:
+                      AllowMethods: "'*'"
+                      AllowHeaders: "'*'"
+                      AllowOrigin: "'*'"
                           #AutoPublishAlias: live
                           #DeploymentPreference:
                           #Type: Linear10PercentEvery1Minute
