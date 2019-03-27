@@ -20,6 +20,7 @@ const fetchResponse = async (url, origin, method, data) => {
   res.headers['transfer-encoding'] =  '';
   if (method === 'OPTIONS'){
     res.statusCode = 200;
+    res.headers['access-control-allow-origin'] = origin;
   }
   return res;
 };

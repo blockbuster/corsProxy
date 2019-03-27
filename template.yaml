@@ -9,24 +9,18 @@ Description: >
 Globals:
     Function:
         Timeout: 300
-    Api:
-        Cors:
-          AllowMethods: "'*'"
-          AllowHeaders: "'*'"
-          AllowOrigin: "'*'"
-
 
 Resources:
 
     CorsProxyFunction:
-        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Type: AWS::Serverless::Function 
         Properties:
             CodeUri: app/
             Handler: app.handler
             Runtime: nodejs8.10
             Events:
               CorsProxyEvent:
-                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+                    Type: Api 
                     Properties:
                         Path: /{proxy+}
                         Method: ANY
