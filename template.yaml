@@ -32,6 +32,25 @@ Resources:
                           #DeploymentPreference:
                           #Type: Linear10PercentEvery1Minute
 
+    OptionProxyFunction:
+        Type: AWS::Serverless::Function 
+        Properties:
+            CodeUri: app/
+            Handler: app.option
+            Runtime: nodejs8.10
+            Events:
+              CorsProxyEvent:
+                    Type: Api 
+                    Properties:
+                        Path: /{proxy+}
+                        Method: OPTION
+                    Cors:
+                      AllowMethods: "'*'"
+                      AllowHeaders: "'*'"
+                      AllowOrigin: "'*'"
+                          #AutoPublishAlias: live
+                          #DeploymentPreference:
+                          #Type: Linear10PercentEvery1Minute
 Outputs:
 
     # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
