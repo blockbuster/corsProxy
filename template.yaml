@@ -21,6 +21,7 @@ Resources:
             Events:
               CorsProxyEvent:
                     Type: Api 
+                    EndpointConfiguration: REGIONAL
                     Properties:
                         Path: /{proxy+}
                         Method: ANY
