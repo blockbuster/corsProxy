@@ -17,15 +17,3 @@ exports.handler = async (event) => {
     body: JSON.stringify(res.data)
   };
 };
-
-
-
-exports.option = async (event) => {
-  const origin = event.headers.origin||event.headers.Origin;
-  const headers = event.headers;
-  headers['access-control-allow-origin'] = origin;
-  return {
-    headers: headers,
-    statusCode: 200,
-  };
-};
