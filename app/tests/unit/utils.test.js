@@ -76,10 +76,10 @@ test('With params', async () => {
   const params = {
     param1: 1,
     param2: 2,
-    param3: 3
+    param3: '3%7Cdec'
   };
   let serializedParams = await utils.serializeParams(params);
-  expect(serializedParams).toBe('param1=1&param2=2&param3=3');
+  expect(serializedParams).toBe('param1=1&param2=2&param3=3|dec');
 });
 
 // Test endpoint documentation

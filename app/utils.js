@@ -31,7 +31,10 @@ const serializeParams = async (params) => {
   // Check if any params are passed
   if (typeof params !== 'undefined') {
     await Object.keys(params).sort().map((q) => {
-      const value = params[q].replace('%7C', '|'); 
+      let value = params[q]; 
+      if (typeof value === 'string') {
+        value = value.replace(/%7C/g, '|');
+      } 
       queryString.push(q + '=' + value);
     });
   }
